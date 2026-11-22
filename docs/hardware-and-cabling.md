@@ -70,11 +70,24 @@ This matters if you plan the same build. The power supplies are **2 × 900 W**.
 | 6 fans | up to about 100+ W at 100 % (dual-rotor, high-RPM) | fan-control keeps them at 30–88 % |
 | **Total, everything at max** | **about 1 050–1 100 W** | |
 
-In practice, LLM inference loads the GPUs fully only during prompt processing, while the CPUs stay mostly idle. The real draw stays well below the theoretical sum, but it can exceed one 900 W supply if CPUs and GPUs peak together.
+The "Nominal max" column is a datasheet estimate.
 
-> The numbers in the "Nominal max" column are datasheet estimates, not wall-socket measurements. To see real PSU input power, look at the IMM2 web UI (Server Power) or the IPMI power sensors.
+### Measured whole-system power (IMM2 DCMI)
 
-<!-- TODO: measured wall / IMM power at idle, during LLM inference, during GPU stress; PSU redundancy mode used -->
+| State | System power |
+|---|---|
+| Idle (GPUs idle) | **334 W** avg (296–350 W) |
+| 70B LLM, generating | about 575–590 W |
+| 70B LLM, long prompt (prefill) | about **705 W** avg, 771 W max |
+| 70B LLM, 4 parallel users, sustained | 592 W avg, 631 W max |
+| **Highest reading** | **787 W** |
+
+- **One supply is enough for this workload:** LLM inference stays within a single 900 W PSU, but with only about 110 W headroom.
+- **Heavier loads exceed it:** a sustained full GPU load, e.g. training, plus CPU load would go over 900 W.
+
+Details and the measuring script are in [`../power/`](../power/).
+
+<!-- TODO: PSU redundancy mode used, PSU part number -->
 
 ## GPU placement and airflow
 

@@ -74,6 +74,8 @@ function Start-Srv([string]$Gpus, [int]$Port, [hashtable]$Opt) {
     $env:OLLAMA_MAX_LOADED_MODELS = '1'
     # Közös (hálózati) modellkönyvtár: induláskor NE takarítson, mert más gépek félkész letöltéseit törölné
     $env:OLLAMA_NOPRUNE = '1'
+    # Hálózati modellkönyvtárból egy 40 GB-os modell 1 Gbit-en ~7 perc; az alapértelmezett 5 perc kevés
+    $env:OLLAMA_LOAD_TIMEOUT = '30m'
     if ($ModelsDir) { $env:OLLAMA_MODELS = $ModelsDir }
     foreach ($k in 'OLLAMA_NUM_PARALLEL', 'OLLAMA_FLASH_ATTENTION', 'OLLAMA_KV_CACHE_TYPE', 'OLLAMA_SCHED_SPREAD') {
         if ($Opt.ContainsKey($k)) { Set-Item "env:$k" $Opt[$k] } else { Remove-Item "env:$k" -ErrorAction SilentlyContinue }

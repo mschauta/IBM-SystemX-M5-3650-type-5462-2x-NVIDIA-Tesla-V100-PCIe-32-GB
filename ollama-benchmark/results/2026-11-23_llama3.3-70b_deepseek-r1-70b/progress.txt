@@ -1,0 +1,40 @@
+﻿23:49:18  Benchmark indul. Kimenet: C:\GPU test\logs\ollama_bench_20261122_234915
+23:49:22  === llama3.3:70b | 2 GPU | ctx 8192
+23:50:20     betöltés 37,3 s, méret 43 GB (VRAM 43 GB), GPU0 22640 MiB, GPU1 22189 MiB
+23:50:46     rövid: 400 token, 15,7 token/s
+23:51:08     hosszú: 4243 token prompt (523 token/s, 8,1 s), generálás 15,3 token/s
+23:51:08  === llama3.3:70b | 2 GPU | ctx 32768
+23:52:05     betöltés 36,5 s, méret 50 GB (VRAM 50 GB), GPU0 26224 MiB, GPU1 25716 MiB
+23:52:32     rövid: 400 token, 15,8 token/s
+23:53:24     hosszú: 16813 token prompt (431 token/s, 39 s), generálás 14,2 token/s
+23:53:24  === llama3.3:70b | 2 GPU | ctx 65536
+23:54:23     betöltés 38,8 s, méret 60,2 GB (VRAM 60,2 GB), GPU0 31610 MiB, GPU1 30837 MiB
+23:54:49     rövid: 400 token, 15,7 token/s
+23:56:36     hosszú: 33732 token prompt (370 token/s, 91,1 s), generálás 12,9 token/s
+23:56:36  === llama3.3:70b | 2 GPU FA+q8 | ctx 65536
+23:57:32     betöltés 36,3 s, méret 51,1 GB (VRAM 51,1 GB), GPU0 26792 MiB, GPU1 26269 MiB
+23:58:00     rövid: 400 token, 15,2 token/s
+23:59:59     hosszú: 33732 token prompt (334 token/s, 101,1 s), generálás 9,9 token/s
+23:59:59  === llama3.3:70b | 2 GPU elosztva, 4 párhuzamos
+00:01:45     összesen 37,4 token/s (4 kérés, kérésenként átl. 10,1 token/s)
+00:01:45  === deepseek-r1:70b | 2 GPU | ctx 8192
+00:02:42     betöltés 37 s, méret 43 GB (VRAM 43 GB), GPU0 22636 MiB, GPU1 22185 MiB
+00:03:08     rövid: 400 token, 15,7 token/s
+00:03:30     hosszú: 4236 token prompt (523 token/s, 8,1 s), generálás 15,3 token/s
+00:03:30  === deepseek-r1:70b | 2 GPU | ctx 32768
+00:04:26     betöltés 36,2 s, méret 50 GB (VRAM 50 GB), GPU0 26220 MiB, GPU1 25712 MiB
+00:04:53     rövid: 400 token, 15,7 token/s
+00:05:47     hosszú: 16806 token prompt (431 token/s, 39 s), generálás 14,2 token/s
+00:05:47  === deepseek-r1:70b | 2 GPU | ctx 65536
+00:06:45     betöltés 38,7 s, méret 60,2 GB (VRAM 60,2 GB), GPU0 31606 MiB, GPU1 30833 MiB
+00:07:12     rövid: 400 token, 15,7 token/s
+00:08:59     hosszú: 33725 token prompt (371 token/s, 90,8 s), generálás 12,9 token/s
+00:08:59  === deepseek-r1:70b | 2 GPU FA+q8 | ctx 65536
+00:09:57     betöltés 38,4 s, méret 51,1 GB (VRAM 51,1 GB), GPU0 26788 MiB, GPU1 26265 MiB
+00:10:25     rövid: 400 token, 15,2 token/s
+00:12:27     hosszú: 33725 token prompt (334 token/s, 101 s), generálás 9,9 token/s
+00:12:27  === deepseek-r1:70b | 2 GPU elosztva, 4 párhuzamos
+00:14:15     összesen 37,6 token/s (4 kérés, kérésenként átl. 10,3 token/s)
+00:14:15  === deepseek-r1:70b | TARTÓS 300 s | 2 GPU elosztva, 4 párhuzamos
+00:21:00     tartós: 36,6 token/s összesen
+00:21:08  Kész. Eredmények: C:\GPU test\logs\ollama_bench_20261122_234915\results.jsonl, fázisok: C:\GPU test\logs\ollama_bench_20261122_234915\phases.csv

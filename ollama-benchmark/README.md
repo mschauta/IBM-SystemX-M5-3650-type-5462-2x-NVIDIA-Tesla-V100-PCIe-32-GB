@@ -99,6 +99,77 @@ GPU0, on riser 1 (CPU1 side), consistently runs a few °C warmer than GPU1.
 
 Raw data is in [`results/`](results/): `results.jsonl` (one line per test), `phases.csv` (thermals per phase), `gpu_samples.csv` (2 s samples) and `progress.txt` (run log, in Hungarian).
 
-## Larger models (MoE 35B, 70B)
+## qwen3.5:35b-a3b (MoE, 35 B total / about 3 B active per token)
 
-*Benchmark in progress: qwen3.5:35b-a3b, llama3.3:70b, deepseek-r1:70b. Results will be added here.*
+| Config | Context | VRAM | Short gen | Long prompt prefill | Gen after long prompt |
+|---|---|---|---|---|---|
+| **1 GPU** | 32k | 20.6 GB | **62.9 tok/s** | 478 tok/s | 59.7 tok/s |
+| 2 GPUs | 32k | 21.4 GB | 60.3 | 481 | 57.9 |
+| 1 GPU | 131k | 22.5 GB | 63.3 | 354 (92k tokens in 261 s) | 52.9 |
+| 2 GPUs | 131k | 27.3 GB | 60.3 | 469 (197 s) | 51.5 |
+| **1 GPU** | 262k | 25.1 GB | 63.2 | 287 (186k tokens in 11 min) | **45.1** |
+| 2 GPUs | 262k | 33.8 GB | 60.2 | 376 (8 min) | 44.4 |
+| 1 GPU, FA + q8 KV | 262k | 23.2 GB | 62.3 | 288 | 33.5 |
+| 2 GPUs, FA + q8 KV | 262k | 32.1 GB | 59.2 | 372 | 33.1 |
+
+| Parallel, 4 concurrent requests | Total |
+|---|---|
+| 1 GPU, `NUM_PARALLEL=4` | 71.2 tok/s |
+| 2 GPUs spread | 63.2 tok/s |
+| **2 instances (1 per GPU)** | **112.7 tok/s** |
+
+Compared with the dense 27B, the MoE model:
+
+- **generates faster:** 63 vs 41–45 tok/s; after a 186k prompt, 45 vs 24 tok/s;
+- **processes prompts slower:** 478 vs 757 tok/s at 32k;
+- **runs cooler:** about 155 W and 64 °C max per GPU, instead of 250 W and 72 °C;
+- **fits 262k context on a single V100.**
+
+For interactive use on V100 it is the most pleasant model tested here.
+
+## llama3.3:70b and deepseek-r1:70b (dense 70 B, Q4_K_M, 43 GB)
+
+These models need **both GPUs**, so the 1-GPU cases were skipped with `-TwoGpuOnly`. The two models share the Llama-3 70B architecture and gave **identical** speed numbers.
+
+| Config | Context | VRAM (both GPUs) | Short gen | Long prompt prefill | Gen after long prompt |
+|---|---|---|---|---|---|
+| 2 GPUs | 8k | 43.0 GB | **15.7 tok/s** | 523 tok/s | 15.3 tok/s |
+| 2 GPUs | 32k | 50.0 GB | 15.8 | 431 (17k tokens in 39 s) | 14.2 |
+| 2 GPUs | 64k | **60.2 GB** (31.6 + 30.8 GB, nearly full) | 15.7 | 370 (34k tokens in 91 s) | 12.9 |
+| 2 GPUs, FA + q8 KV | 64k | 51.1 GB | 15.2 | 334 | **9.9** |
+
+| Parallel, 4 concurrent requests, 8k ctx | Total |
+|---|---|
+| 2 GPUs spread, `NUM_PARALLEL=4` | 37.5 tok/s (about 10 tok/s per request) |
+| same, sustained 300 s | 36.6 tok/s |
+
+Notes:
+
+- **Context limit:** 64k is about the maximum with f16 KV cache. 128k does not fit, because the KV cache alone would be about 40 GB.
+- **FA + q8 KV** frees 9 GB, enough for more context, but costs 23 % generation speed.
+- **Long-prompt length:** the Llama tokenizer packs the synthetic log text into fewer tokens than Qwen's, so the "long prompt" filled about 50 % of the context instead of 70 %.
+- **15–16 tok/s** is readable for a single user, but about 2.6× slower than the 27B and 4× slower than the 35B MoE.
+- **Thermals:** max 71 / 67 °C. GPU power peaks 250–281 W during prefill.
+
+### Loading big models from a network share
+
+| | Load time |
+|---|---|
+| 43 GB model from a 1 GbE SMB share | about 7 min |
+| same model from local NVMe | **37 s** |
+
+Ollama's default **`OLLAMA_LOAD_TIMEOUT` is 5 minutes**. Above that, the load from the network fails with HTTP 500 "timed out waiting for llama-server to start". Either:
+
+- raise the timeout (`OLLAMA_LOAD_TIMEOUT=30m`; the benchmark script sets it), or
+- copy the models you use often to a local disk. [`../tools/Copy-OllamaModel.ps1`](../tools/Copy-OllamaModel.ps1) copies a model's manifest and blobs from one models directory to another.
+
+## Summary: which model on 2× V100
+
+| Model | Fits on | Speed (1 user) | Best throughput (4 users) | Max GPU temperature / power |
+|---|---|---|---|---|
+| qwen3.5:4b | 1 GPU | 68 tok/s | 142 tok/s (2 instances) | 69 °C / 250 W (prefill only) |
+| **qwen3.5:35b-a3b (MoE)** | **1 GPU, even at 262k** | **63 tok/s** | **113 tok/s** (2 instances) | **64 °C / 155 W** |
+| qwen3.8:27b | 1 GPU up to 131k | 41–45 tok/s | 89 tok/s (2 instances) | 72 °C / 258 W |
+| llama3.3:70b / deepseek-r1:70b | 2 GPUs, up to 64k | 15.7 tok/s | 37.5 tok/s | 71 °C / 281 W |
+
+System power (IMM2 DCMI) during the 70B runs: see [`../power/`](../power/).

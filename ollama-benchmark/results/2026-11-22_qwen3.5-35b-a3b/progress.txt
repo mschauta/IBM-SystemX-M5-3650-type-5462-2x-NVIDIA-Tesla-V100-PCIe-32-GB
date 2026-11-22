@@ -1,0 +1,40 @@
+﻿21:20:24  Benchmark indul. Kimenet: C:\GPU test\logs\ollama_bench_20261122_212022
+21:20:28  === qwen3.5:35b-a3b | 1 GPU | ctx 32768
+21:24:34     betöltés 225,4 s, méret 20,6 GB (VRAM 20,6 GB), GPU0 22381 MiB, GPU1 10 MiB
+21:24:49     rövid: 400 token, 62,9 token/s
+21:25:42     hosszú: 22705 token prompt (478 token/s, 47,5 s), generálás 59,7 token/s
+21:25:42  === qwen3.5:35b-a3b | 2 GPU | ctx 32768
+21:29:37     betöltés 214,2 s, méret 21,4 GB (VRAM 21,4 GB), GPU0 12611 MiB, GPU1 10911 MiB
+21:29:46     rövid: 400 token, 60,3 token/s
+21:30:39     hosszú: 22704 token prompt (481 token/s, 47,2 s), generálás 57,9 token/s
+21:30:39  === qwen3.5:35b-a3b | 1 GPU | ctx 131072
+21:34:33     betöltés 213,5 s, méret 22,5 GB (VRAM 22,5 GB), GPU0 24261 MiB, GPU1 10 MiB
+21:34:42     rövid: 400 token, 63,3 token/s
+21:39:11     hosszú: 92363 token prompt (354 token/s, 261,1 s), generálás 52,9 token/s
+21:39:11  === qwen3.5:35b-a3b | 2 GPU | ctx 131072
+21:43:09     betöltés 216,3 s, méret 27,3 GB (VRAM 27,3 GB), GPU0 15667 MiB, GPU1 13895 MiB
+21:43:18     rövid: 400 token, 60,3 token/s
+21:46:41     hosszú: 92363 token prompt (469 token/s, 196,8 s), generálás 51,5 token/s
+21:46:41  === qwen3.5:35b-a3b | 1 GPU | ctx 262144
+21:50:38     betöltés 217,1 s, méret 25,1 GB (VRAM 25,1 GB), GPU0 26949 MiB, GPU1 10 MiB
+21:50:47     rövid: 400 token, 63,2 token/s
+22:01:44     hosszú: 185793 token prompt (287 token/s, 648 s), generálás 45,1 token/s
+22:01:44  === qwen3.5:35b-a3b | 2 GPU | ctx 262144
+22:05:43     betöltés 217,9 s, méret 33,8 GB (VRAM 33,8 GB), GPU0 18999 MiB, GPU1 17227 MiB
+22:05:52     rövid: 400 token, 60,2 token/s
+22:14:15     hosszú: 185793 token prompt (376 token/s, 494 s), generálás 44,4 token/s
+22:14:15  === qwen3.5:35b-a3b | 1 GPU FA+q8 | ctx 262144
+22:18:11     betöltés 215,7 s, méret 23,2 GB (VRAM 23,2 GB), GPU0 25015 MiB, GPU1 10 MiB
+22:18:20     rövid: 400 token, 62,3 token/s
+22:29:15     hosszú: 185793 token prompt (288 token/s, 645 s), generálás 33,5 token/s
+22:29:15  === qwen3.5:35b-a3b | 2 GPU FA+q8 | ctx 262144
+22:33:17     betöltés 220,4 s, méret 32,1 GB (VRAM 32,1 GB), GPU0 18145 MiB, GPU1 16373 MiB
+22:33:26     rövid: 400 token, 59,2 token/s
+22:41:56     hosszú: 185793 token prompt (372 token/s, 499,2 s), generálás 33,1 token/s
+22:41:56  === qwen3.5:35b-a3b | 1 GPU, 4 párhuzamos
+22:46:21     összesen 71,2 token/s (4 kérés, kérésenként átl. 22,2 token/s)
+22:46:21  === qwen3.5:35b-a3b | 2 GPU elosztva, 4 párhuzamos
+22:51:00     összesen 63,2 token/s (4 kérés, kérésenként átl. 21,1 token/s)
+22:51:00  === qwen3.5:35b-a3b | 2 példány (GPU-nként 1), 2+2 párhuzamos
+22:59:30     összesen 112,7 token/s (4 kérés, kérésenként átl. 40,6 token/s)
+22:59:48  Kész. Eredmények: C:\GPU test\logs\ollama_bench_20261122_212022\results.jsonl, fázisok: C:\GPU test\logs\ollama_bench_20261122_212022\phases.csv

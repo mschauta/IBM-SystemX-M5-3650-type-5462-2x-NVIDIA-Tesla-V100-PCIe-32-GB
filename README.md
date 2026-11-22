@@ -9,6 +9,8 @@ This repository contains:
 | [`fan-control/`](fan-control/) | **GPU-temperature-driven fan control for the IMM2.** The stock firmware ignores add-in GPU temperatures, so passive V100s overheat. This script reads the GPUs and raises the fans per side via in-band IPMI. It runs as a background service with a watchdog. |
 | [`gpu-test/`](gpu-test/) | A gentle V100 health test (VRAM patterns, PCIe bandwidth and integrity, bit-exact compute check, stepped 150/200/250 W load with thermal cut-off). It needs only Python and the NVIDIA driver. |
 | [`ollama-benchmark/`](ollama-benchmark/) | Ollama benchmark: 1 GPU vs 2 GPUs, context size, Flash Attention and q8 KV cache, parallel serving, with temperature, power and fan logging. Results are included. |
+| [`power/`](power/) | Whole-system power read from the IMM2 (DCMI): **334 W idle, about 700 W during 70B inference, 787 W peak** |
+| [`tools/`](tools/) | Helper: copy Ollama models between model directories (network share → local NVMe) |
 | [`docs/hardware-and-cabling.md`](docs/hardware-and-cabling.md) | Full hardware configuration, power budget, GPU power cabling and photos. *(work in progress)* |
 | [`docs/drivers-and-software.md`](docs/drivers-and-software.md) | **Working driver, CUDA and software versions** for V100 on Windows 11 (driver 560.81, CUDA 12.6, Ollama), install order and pitfalls. Volta is no longer supported by CUDA 13. |
 
@@ -45,6 +47,8 @@ With [`fan-control`](fan-control/), the same load holds at **66–69 °C**. Unde
 | qwen3.5:4b | 1 GPU | 68 tok/s | 2 instances, 1 per GPU: **142 tok/s** total |
 | qwen3.8:27b | 1 GPU (≤ 131k ctx) | 41–45 tok/s | 2 instances, 1 per GPU: **89 tok/s** total (75 tok/s sustained) |
 | qwen3.8:27b @ 262k ctx | 2 GPUs (does not fit one) | 40 tok/s | – |
+| **qwen3.5:35b-a3b (MoE)** | **1 GPU (even at 262k ctx)** | **63 tok/s** | 2 instances: **113 tok/s**, at only about 155 W per GPU |
+| llama3.3:70b / deepseek-r1:70b | 2 GPUs (≤ 64k ctx) | 15.7 tok/s | 37.5 tok/s |
 
 Takeaways for V100 + Ollama:
 

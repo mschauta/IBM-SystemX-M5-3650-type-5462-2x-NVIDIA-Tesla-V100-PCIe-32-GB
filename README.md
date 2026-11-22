@@ -18,7 +18,8 @@ This repository contains:
 
 | | |
 |---|---|
-| Server | IBM System x3650 M5, machine type 5462 (5462-B2G), UEFI 3.70, IMM2 |
+| Server | IBM System x3650 M5, machine type 5462 (5462-B2G) |
+| Firmware | **UEFI TCE156A 3.70, IMM2 3.75**, kept on purpose: newer releases made the fans ramp up and stay loud ([details](docs/hardware-and-cabling.md#firmware-the-versions-in-use-and-why)) |
 | CPUs | 2 × Intel Xeon E5-2698 v3 (16C/32T each, 2.3 GHz, 135 W) |
 | RAM | 24 × 8 GB DDR4 RDIMM = 192 GB (all slots, runs at 1600 MT/s) |
 | GPUs | 2 × NVIDIA Tesla V100-PCIE-32GB (passive, 250 W), one per CPU riser, PCIe Gen3 x16 (12–13 GB/s measured) |

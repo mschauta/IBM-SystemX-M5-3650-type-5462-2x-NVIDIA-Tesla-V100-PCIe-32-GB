@@ -21,6 +21,36 @@
 | Power supplies | **2 × 900 W** hot-swap |
 | OS | Windows 11 Pro (build 26200), NVIDIA data-center driver 560.81 (TCC), CUDA 12.6 |
 
+## Firmware: the versions in use, and why
+
+| Component | Firmware |
+|---|---|
+| UEFI (BIOS) | **TCE156A 3.70** (2022-04-14) |
+| IMM2 (BMC) | **3.75** (IPMI firmware revision; IPMI 2.0, manufacturer ID 77 = Lenovo). The full build ID (TCOO…) is shown in the IMM2 web UI |
+| Tesla V100 VBIOS | 88.00.7E.00.03 (both cards) |
+| HGST HUH721010AL5200 (10 TB SAS) | A384 |
+| Samsung 970 EVO Plus 2 TB | 4B2QEXM7 |
+
+<!-- TODO: full IMM2 build ID, ServeRAID M5210 firmware, X520 / Broadcom NIC firmware (IMM2 web UI → Server Firmware, or OneCLI / storcli) -->
+
+> **Why these versions:** on this server, **newer IBM/Lenovo firmware releases caused fan-control problems**: the fans ramped up and stayed loud. The versions above run stable and quiet, so the server deliberately stays on them.
+>
+> The [fan-control](../fan-control/) OEM IPMI command (`0x3A 0x07`), the fan-zone mapping and the sensor names were developed and tested **on exactly this UEFI 3.70 / IMM2 3.75 combination**. Other firmware may behave differently. Run `-Mode Status` and `-Mode ZoneProbe` first.
+
+<!-- TODO: which newer UEFI / IMM2 version showed the loud-fan behaviour -->
+
+### Windows drivers in use
+
+| Device | Driver |
+|---|---|
+| Tesla V100-PCIE-32GB | NVIDIA 560.81 (32.0.15.6081) |
+| ServeRAID M5210 (AVAGO MegaRAID SAS) | megasas2i 6.714.22.0 |
+| Intel X520-2 | 4.1.143.0 |
+| Broadcom NetXtreme GbE (onboard) | 214.0.0.0 |
+| Lenovo IMM2 PBI PCI Mailbox | 1.0.1.2015 |
+| IPMI | Microsoft Generic IPMI Compliant Device (inbox) |
+| NVMe | Microsoft inbox `stornvme` |
+
 <!-- TODO: RAID layout of the 8 HDDs (RAID level / virtual drives), NVMe adapter card model, PSU part number / efficiency rating -->
 
 ## Power budget

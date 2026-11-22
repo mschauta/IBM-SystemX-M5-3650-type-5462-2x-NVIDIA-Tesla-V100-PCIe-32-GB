@@ -9,7 +9,8 @@ This repository contains:
 | [`fan-control/`](fan-control/) | **GPU-temperature-driven fan control for the IMM2.** The stock firmware ignores add-in GPU temperatures, so passive V100s overheat. This script reads the GPUs and raises the fans per side via in-band IPMI. It runs as a background service with a watchdog. |
 | [`gpu-test/`](gpu-test/) | A gentle V100 health test (VRAM patterns, PCIe bandwidth and integrity, bit-exact compute check, stepped 150/200/250 W load with thermal cut-off). It needs only Python and the NVIDIA driver. |
 | [`ollama-benchmark/`](ollama-benchmark/) | Ollama benchmark: 1 GPU vs 2 GPUs, context size, Flash Attention and q8 KV cache, parallel serving, with temperature, power and fan logging. Results are included. |
-| [`docs/hardware-and-cabling.md`](docs/hardware-and-cabling.md) | Hardware, GPU power cabling and photos. *(work in progress)* |
+| [`docs/hardware-and-cabling.md`](docs/hardware-and-cabling.md) | Full hardware configuration, power budget, GPU power cabling and photos. *(work in progress)* |
+| [`docs/drivers-and-software.md`](docs/drivers-and-software.md) | **Working driver, CUDA and software versions** for V100 on Windows 11 (driver 560.81, CUDA 12.6, Ollama), install order and pitfalls. Volta is no longer supported by CUDA 13. |
 
 > Console and log messages in the scripts are in **Hungarian**. The code, parameters and these documents are in English.
 

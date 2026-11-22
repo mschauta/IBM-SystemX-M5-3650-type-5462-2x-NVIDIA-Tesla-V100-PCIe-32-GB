@@ -1,0 +1,8 @@
+# Windows scripts: cmd.exe needs CRLF line endings, otherwise .bat files silently do nothing
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.py  text eol=lf
+*.md  text eol=lf
+*.csv text eol=lf
+*.jsonl text eol=lf

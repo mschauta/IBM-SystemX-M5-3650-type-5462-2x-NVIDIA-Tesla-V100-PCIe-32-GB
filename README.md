@@ -17,13 +17,17 @@ This repository contains:
 
 | | |
 |---|---|
-| Server | IBM/Lenovo System x3650 M5, machine type 5462 |
-| Management | IMM2 (in-band IPMI via the Windows IPMI driver) |
-| RAM | 24 × 8 GB DDR4 (192 GB) |
-| GPUs | 2 × NVIDIA Tesla V100-PCIE-32GB (passive), one per CPU riser |
-| GPU links | PCIe Gen3 x16 each, 12–13 GB/s measured host↔GPU |
+| Server | IBM System x3650 M5, machine type 5462 (5462-B2G), UEFI 3.70, IMM2 |
+| CPUs | 2 × Intel Xeon E5-2698 v3 (16C/32T each, 2.3 GHz, 135 W) |
+| RAM | 24 × 8 GB DDR4 RDIMM = 192 GB (all slots, runs at 1600 MT/s) |
+| GPUs | 2 × NVIDIA Tesla V100-PCIE-32GB (passive, 250 W), one per CPU riser, PCIe Gen3 x16 (12–13 GB/s measured) |
+| Storage | ServeRAID M5210 + 8 × 10 TB SAS HDD; 4 × Samsung 970 EVO Plus 2 TB NVMe |
+| Network | 4 × 1 GbE onboard, Intel X520-2 dual 10 GbE SFP+, Wi-Fi |
+| Fans | 6 hot-swap dual-rotor fans in 2 zones: about 4 000 RPM at factory idle, about 15 000 RPM at 100 % |
+| Power | 2 × 900 W hot-swap PSUs (see the [power budget](docs/hardware-and-cabling.md#power-budget)) |
 | OS / driver | Windows 11 Pro, NVIDIA 560.81 (TCC mode), CUDA 12.6 (CUDA 13.x does not support Volta) |
-| Fans | 6 hot-swap dual-rotor fans: about 4 000 RPM at factory idle, about 15 000 RPM at 100 % |
+
+Full component list, slot placement and power budget: [docs/hardware-and-cabling.md](docs/hardware-and-cabling.md).
 
 ## The problem in one picture
 

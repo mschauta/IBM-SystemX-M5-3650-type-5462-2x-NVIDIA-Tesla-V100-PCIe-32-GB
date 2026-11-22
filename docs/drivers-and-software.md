@@ -30,12 +30,14 @@ Windows 11 Pro was installed anyway, with the **hardware requirement checks remo
 - **Version:** currently Windows 11 Pro **25H2, build 26200.10075**. Cumulative updates install normally.
 - **Version string:** `winver` shows Windows 11, but the registry value `ProductName` still says "Windows 10 Pro". This is a known Windows quirk and harmless.
 
-Common ways to skip the checks at install time:
+**How it was done on this server: [Rufus](https://rufus.ie/).**
 
-- **Rufus:** when you write the USB installer, tick *"Remove requirement for 4GB+ RAM, Secure Boot and TPM 2.0"*.
-- **Registry during setup:** in Windows Setup press Shift+F10, run `regedit`, and create `HKLM\SYSTEM\Setup\LabConfig` with the DWORD values `BypassTPMCheck=1`, `BypassSecureBootCheck=1` and `BypassCPUCheck=1`.
+1. Download the official Windows 11 ISO from Microsoft.
+2. Write it to a USB stick with Rufus.
+3. When Rufus shows the *Windows User Experience* dialog, tick **"Remove requirement for 4GB+ RAM, Secure Boot and TPM 2.0"**.
+4. Boot the server from the stick in UEFI mode and install normally.
 
-<!-- TODO: which method was used on this server -->
+An alternative that needs no Rufus: in Windows Setup press Shift+F10, run `regedit`, and create `HKLM\SYSTEM\Setup\LabConfig` with the DWORD values `BypassTPMCheck=1`, `BypassSecureBootCheck=1` and `BypassCPUCheck=1`.
 
 > Running Windows 11 on unsupported hardware is at your own risk. Microsoft does not guarantee updates for such systems. **Feature updates** (e.g. a future 26H2) may refuse to install and may need the same bypass again. Cumulative monthly updates have worked so far.
 

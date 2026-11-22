@@ -27,7 +27,8 @@ This repository contains:
 | Network | 4 × 1 GbE onboard, Intel X520-2 dual 10 GbE SFP+, Wi-Fi |
 | Fans | 6 hot-swap dual-rotor fans in 2 zones: about 4 000 RPM at factory idle, about 15 000 RPM at 100 % |
 | Power | 2 × 900 W hot-swap PSUs (see the [power budget](docs/hardware-and-cabling.md#power-budget)) |
-| OS / driver | Windows 11 Pro, NVIDIA 560.81 (TCC mode), CUDA 12.6 (CUDA 13.x does not support Volta) |
+| OS | Windows 11 Pro 25H2, **officially unsupported** on this CPU / without TPM 2.0. Installed with the requirement checks removed, and runs fine ([details](docs/drivers-and-software.md#windows-11-on-unsupported-hardware)) |
+| Driver | NVIDIA 560.81 (TCC mode), CUDA 12.6 (CUDA 13.x does not support Volta) |
 
 Full component list, slot placement and power budget: [docs/hardware-and-cabling.md](docs/hardware-and-cabling.md).
 

@@ -8,7 +8,7 @@ Volta (V100, compute capability 7.0) is at the end of NVIDIA's support window. *
 
 | Component | Version | Notes |
 |---|---|---|
-| OS | Windows 11 Pro 25H2 (build 26200) | not Windows Server: the data-center driver installs fine on Win 11 |
+| OS | Windows 11 Pro 25H2 (build 26200) | **unsupported hardware**, installed with the requirement checks removed (see below). The data-center driver installs fine on Windows 11 |
 | NVIDIA driver | **560.81** data-center driver (reports CUDA 12.6) | GPUs in **TCC** mode |
 | GPU VBIOS | 88.00.7E.00.03 | both cards |
 | CUDA Toolkit | **12.6** (nvcc 12.6.20) | only needed to *compile* CUDA code; Ollama and the gpu-test script do not need it |
@@ -17,6 +17,33 @@ Volta (V100, compute capability 7.0) is at the end of NVIDIA's support window. *
 | Nsight Compute / Systems | 2024.3 / 2024.4 | optional profiling |
 | Ollama | 0.40.17 | ships its own CUDA 12 and 13 runtimes and picks the CUDA 12 one for Volta automatically |
 | Python | 3.15 (gpu-test script, standard library only) | for PyTorch see below |
+
+## Windows 11 on unsupported hardware
+
+The x3650 M5 is **officially not supported by Windows 11**:
+
+- **CPU:** the Xeon E5-2698 v3 (Haswell-EP) is not on Microsoft's supported CPU list.
+- **TPM 2.0 / Secure Boot:** these requirements are not met in this configuration. Secure Boot is **off**; the server boots in UEFI mode.
+
+Windows 11 Pro was installed anyway, with the **hardware requirement checks removed** during setup. It runs fine:
+
+- **Version:** currently Windows 11 Pro **25H2, build 26200.10075**. Cumulative updates install normally.
+- **Version string:** `winver` shows Windows 11, but the registry value `ProductName` still says "Windows 10 Pro". This is a known Windows quirk and harmless.
+
+Common ways to skip the checks at install time:
+
+- **Rufus:** when you write the USB installer, tick *"Remove requirement for 4GB+ RAM, Secure Boot and TPM 2.0"*.
+- **Registry during setup:** in Windows Setup press Shift+F10, run `regedit`, and create `HKLM\SYSTEM\Setup\LabConfig` with the DWORD values `BypassTPMCheck=1`, `BypassSecureBootCheck=1` and `BypassCPUCheck=1`.
+
+<!-- TODO: which method was used on this server -->
+
+> Running Windows 11 on unsupported hardware is at your own risk. Microsoft does not guarantee updates for such systems. **Feature updates** (e.g. a future 26H2) may refuse to install and may need the same bypass again. Cumulative monthly updates have worked so far.
+
+Why Windows and not Linux? It was simply the requirement for this machine. Everything here also maps to Linux:
+
+- **Fan control:** `ipmitool raw 0x3a 0x07 …`.
+- **GPU sensors:** `nvidia-smi`.
+- **Ollama:** same environment variables.
 
 ## Step by step
 

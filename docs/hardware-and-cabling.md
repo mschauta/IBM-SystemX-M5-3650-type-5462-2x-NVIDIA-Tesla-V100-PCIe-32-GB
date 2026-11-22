@@ -76,7 +76,7 @@ The "Nominal max" column is a datasheet estimate.
 
 | State | System power |
 |---|---|
-| Idle (GPUs idle) | **334 W** avg (296–350 W) |
+| Idle (GPUs idle, fans settled) | **304 W** avg (290–315 W) |
 | 70B LLM, generating | about 575–590 W |
 | 70B LLM, long prompt (prefill) | about **705 W** avg, 771 W max |
 | 70B LLM, 4 parallel users, sustained | 592 W avg, 631 W max |

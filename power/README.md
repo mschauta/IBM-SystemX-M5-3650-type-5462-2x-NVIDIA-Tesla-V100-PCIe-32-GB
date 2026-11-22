@@ -21,7 +21,8 @@ The IMM2 on this server provides **only the total system power**. It has no per-
 
 | State | System power (avg / max) | Both GPUs (nvidia-smi) |
 |---|---|---|
-| Idle, GPUs idle (models loading or unloaded) | **334 W** avg (296–350 W) | about 80 W (2 × 40 W) |
+| Idle, fans settled back (30 min after the benchmark) | **304 W** avg (290–315 W) | about 80 W (2 × 40 W) |
+| Idle, right after load (fans still elevated, models loading) | 334 W avg (296–350 W) | about 80 W |
 | 70B model, short generation | 573 / 588 W | about 120 W avg |
 | 70B model, long prompt (64k ctx, prefill + generation) | **705 / 771 W** | about 245 W avg, peaks over 330 W |
 | 70B, 4 parallel requests, sustained 5 min | 592 / 631 W | about 190 W avg |

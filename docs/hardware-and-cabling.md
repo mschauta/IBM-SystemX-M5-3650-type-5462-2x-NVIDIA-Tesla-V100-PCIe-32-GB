@@ -165,6 +165,10 @@ The builder considers the following **essential supplies for this adapter modifi
 
 Match the replacement contact to the actual wire size and connector housing, including the combined wire size if two wires share one contact. Check the finished crimp and end-to-end continuity before use.
 
+#### Optional male replacement contacts
+
+**Needed only if a male contact must be replaced; this was not required for this build.** The optional spare identified by the builder is [HESTORE MX-5558TL, item 100.515.56](https://www.hestore.hu/prod_10051556.html), listed with manufacturer reference [Molex 39-00-0041](https://www.molex.com/en-us/products/part-detail/0039000041), a male crimp terminal for **24–18 AWG** wire. It is not part of the required supplies for the modification documented here.
+
 #### Photos of the final modified adapter
 
 ![Final modified Tesla V100 adapter, connected cable sections](images/v100-modified-adapter-05.jpg)

@@ -154,6 +154,19 @@ The photos below show the **modified final cable** after rewiring.
 
 This cable started as the **“Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100”** Y-cable supplied with the V100. The builder removed one branch and rewired the remaining branch.
 
+#### Required tools and replacement contacts
+
+The builder considers the following **essential supplies for this adapter modification**. Without a suitable crimping tool and replacement contacts, the rewiring is difficult; identifying the correct contact type can also take considerable effort. The exact product references are recorded here to make them easier to find.
+
+| Item | Exact reference | Purpose and identification |
+|---|---|---|
+| Ratcheting crimping pliers | [HESTORE PLIERS-SN-58B, item 100.485.79](https://www.hestore.hu/prod_10048579.html) | Crimping tool with an **SN-58B jaw**, for attaching replacement contacts to the wires. |
+| Female crimp contacts | [HESTORE MX-5556-TL (NCT420-T16F), item 100.303.93](https://www.hestore.hu/prod_10030393.html) | **Mini-Fit Jr.** female crimp contact. HESTORE lists [Molex 39-00-0039](https://www.molex.com/en-us/products/part-detail/0039000039) (**5556TL**) as the manufacturer reference, with a wire range of **24–18 AWG (0.20–0.82 mm²)**. |
+
+Match the replacement contact to the actual wire size and connector housing, including the combined wire size if two wires share one contact. Check the finished crimp and end-to-end continuity before use.
+
+#### Photos of the final modified adapter
+
 ![Final modified Tesla V100 adapter, connected cable sections](images/v100-modified-adapter-05.jpg)
 
 *Final modified adapter with the cable sections connected.*

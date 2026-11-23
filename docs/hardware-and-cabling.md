@@ -111,17 +111,106 @@ Maximum board power is 250 W: 75 W from the slot plus up to 175 W through the 8-
 
 Two cable sections connect the motherboard GPU power outlet to each Tesla V100:
 
-1. **Server-side extender:** a 35 cm cable sold as **"8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**. This cable was used without modification.
-2. **GPU adapter:** originally sold as **"Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100"**. The builder removed one of its two branches and rewired the remaining branch, converting the Y-cable into a single-output adapter.
+1. **Server-side extender:** **"35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**. It connects to the motherboard GPU power outlet and was used **without modification**.
+2. **GPU adapter:** the **"Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100"** Y-cable supplied with the V100. The builder removed one of its two branches and rewired the remaining branch, converting the Y-cable into a single-branch adapter.
 
 At the GPU-side 8-pin connector, as shown in the installed-server photo, **four yellow +12 V conductors/contact positions are above four black GND conductors/contact positions** in the photographed orientation. The modified Y adapter distributes **three incoming +12 V wires to four +12 V contacts** (one wire feeds two contacts), while **four GND wires connect to four GND contacts**.
 
-The same adaptation could instead have been made in the extender; the builder chose to modify the Y adapter. This description documents the builder's specific working assembly, not a universal 8-pin GPU cable pinout.
+The builder modified the V100 Y adapter and left the 35 cm server-side extender unchanged. This description documents the builder's specific working assembly, not a universal 8-pin GPU cable pinout.
+
+**Connection order:** motherboard GPU power outlet → unmodified 35 cm extender → modified single-branch V100 adapter → Tesla V100.
+
+### Unmodified 35 cm motherboard power cable
+
+The four photos below show the **“35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card”**. This is the cable connected to the motherboard GPU power outlet. Its other end connects to the modified V100 adapter. The builder used this 35 cm cable **without modification**.
+
+| Unmodified 35 cm cable, view 1 | Unmodified 35 cm cable, view 2 |
+|---|---|
+| ![Unmodified IBM x3650 M5 35 cm motherboard power cable, view 1](images/x3650-m5-35cm-power-cable-01.webp) | ![Unmodified IBM x3650 M5 35 cm motherboard power cable, view 2](images/x3650-m5-35cm-power-cable-02.webp) |
+
+| Unmodified 35 cm cable, connectors | Unmodified 35 cm cable, overview |
+|---|---|
+| ![Unmodified IBM x3650 M5 35 cm motherboard power cable, connectors](images/x3650-m5-35cm-power-cable-03.webp) | ![Unmodified IBM x3650 M5 35 cm motherboard power cable, overview](images/x3650-m5-35cm-power-cable-04.jpg) |
+
+### Original Tesla V100 Y-cable before modification
+
+The six photos below show the **original, unmodified Y-cable supplied with the V100**, named **“Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100”**. Both branches are still present. The final modified adapter is documented in the next section.
+
+| Original Y-cable, overview 1 | Original Y-cable, overview 2 |
+|---|---|
+| ![Original Tesla V100 Y-cable before modification, overview 1](images/v100-original-y-cable-01.webp) | ![Original Tesla V100 Y-cable before modification, overview 2](images/v100-original-y-cable-02.webp) |
+
+| Original single-end connector, wire entry | Original single-end connector, mating face |
+|---|---|
+| ![Original Tesla V100 Y-cable before modification, single-end wire entry](images/v100-original-y-cable-03.webp) | ![Original Tesla V100 Y-cable before modification, single-end mating face](images/v100-original-y-cable-06.webp) |
+
+| Original two branch connectors, wire entry | Original two branch connectors, mating faces |
+|---|---|
+| ![Original Tesla V100 Y-cable before modification, two branch wire entries](images/v100-original-y-cable-04.webp) | ![Original Tesla V100 Y-cable before modification, two branch mating faces](images/v100-original-y-cable-05.webp) |
+
+### Final modified Tesla V100 adapter used in this build
+
+The photos below show the **modified final cable** after rewiring.
+
+This cable started as the **“Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100”** Y-cable supplied with the V100. The builder removed one branch and rewired the remaining branch.
+
+![Final modified Tesla V100 adapter, connected cable sections](images/v100-modified-adapter-05.jpg)
+
+*Final modified adapter with the cable sections connected.*
+
+| Connector close-up, view 1 | Connector close-up, view 2 |
+|---|---|
+| ![Final modified Tesla V100 adapter, connector close-up 1](images/v100-modified-adapter-01.jpg) | ![Final modified Tesla V100 adapter, connector close-up 2](images/v100-modified-adapter-02.jpg) |
+
+| Wire-entry close-up, view 1 | Wire-entry close-up, view 2 |
+|---|---|
+| ![Final modified Tesla V100 adapter, wire-entry close-up 1](images/v100-modified-adapter-03.jpg) | ![Final modified Tesla V100 adapter, wire-entry close-up 2](images/v100-modified-adapter-04.jpg) |
+
+#### Final wiring concept
+
+- **+12 V side:** 3 source wires distributed to 4 destination contacts
+- **One +12 V wire is split to two connector pins**
+- **Ground side:** 4 ground wires mapped to 4 ground contacts
+
+In short:
+
+- **3 × +12 V → 4 × +12 V**
+- **4 × GND → 4 × GND**
+
+#### Original source arrangement
+
+Originally the cable came from **two 8-pin connectors**.
+Per the builder’s description, the original +12 V / ground grouping was:
+
+- +12 V: `(1,2)(1,2)`
+- GND: `(2,2)(2,2)`
+
+After modification, this became:
+
+- +12 V: `(1,1,1/2,1/2)`
+- GND: `(1,1,1,1)`
+
+The grouping notation above is reproduced from the builder's description; it is not connector pin numbering or a verified pin-to-pin map.
+
+#### Important note
+
+This is a **custom modified cable**, not a stock off-the-shelf final wiring solution.
+The photos document the physical result, but anyone reproducing this should still verify:
+
+- end-to-end continuity
+- exact pin-to-pin mapping
+- polarity
+- conductor gauge
+- current handling capability
+
+A wiring mistake can damage the GPU or the server.
 
 
 ### GPU-side 8-pin connector: photographed orientation
 
-![Modified Tesla V100 8-pin cable connector, annotated orientation](images/v100-8pin-annotated.png)
+The annotated image below is an **orientation reference for the builder-reported final wiring**. The original-cable and modified-adapter photographs above document the before and after states.
+
+![Tesla V100 8-pin connector orientation reference, annotated for final wiring](images/v100-8pin-annotated.png)
 
 *GPU-side 8-pin connector, viewed straight into the mating face in the photographed orientation: upper row = 4 × +12 V (yellow), lower row = 4 × GND (black). This annotation reflects the builder's working cable arrangement for this specific build.*
 
@@ -137,14 +226,14 @@ Looking **straight into the mating face of the cable plug**, with the connector 
       Lower row (black wires)
 ```
 
-This is the **builder-reported wiring of the modified cable shown in the photographs**, not a universal PCIe/EPS connector diagram. In the modified single-branch adapter, three incoming yellow +12 V conductors feed four GPU-side +12 V contacts (one incoming conductor is shared between two contacts); the four black ground conductors supply the four GND contacts. The server-side 35 cm extension remains unmodified.
+This is the **builder-reported wiring of the final modified adapter shown in the [final-adapter photos](#final-modified-tesla-v100-adapter-used-in-this-build)**, not a universal PCIe/EPS connector diagram. In the modified single-branch adapter, three incoming yellow +12 V conductors feed four GPU-side +12 V contacts (one incoming conductor is shared between two contacts); the four black ground conductors supply the four GND contacts. The server-side 35 cm extension remains unmodified.
 
-**Wire-color convention:** in common ATX power cables yellow generally denotes +12 V and black denotes ground. This convention **does not independently verify** the electrical polarity or contact mapping of a third-party or rewired adapter. The table above is an orientation-specific account of this installation; a connector viewed from the wire-entry side, or rotated, appears different.
+**Wire-color convention:** in common ATX power cables yellow generally denotes +12 V and black denotes ground. This convention **does not independently verify** the electrical polarity or contact mapping of a third-party or rewired adapter. The diagram above is an orientation-specific account of this installation; a connector viewed from the wire-entry side, or rotated, appears different.
 
 
 > **Safety:** The physical wire arrangement and operational tests do not replace verification of polarity, pin assignments, and cable current capacity. Do not connect a lookalike cable without confirming its actual wiring.
 
-<!-- TODO: add a photo of the complete modified adapter; document verified contact numbering if needed -->
+<!-- TODO: document verified contact numbering if needed -->
 
 ## BIOS and firmware notes
 

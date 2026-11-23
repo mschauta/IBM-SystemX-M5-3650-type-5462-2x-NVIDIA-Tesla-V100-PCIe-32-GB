@@ -2,6 +2,16 @@
 
 A home-lab build: an old 2U Intel Xeon server running two passively cooled Tesla V100 32 GB cards for local LLM inference (Ollama) under Windows 11 Pro.
 
+![IBM System x3650 M5 with 2× NVIDIA Tesla V100 PCIe 32 GB](docs/images/server-dual-v100.jpg)
+
+This repository documents a working IBM / Lenovo System x3650 M5 (machine type 5462) build with **2× NVIDIA Tesla V100 PCIe 32 GB** GPUs, including:
+
+- hardware configuration
+- GPU power cabling
+- PCIe / power / thermal validation
+- Windows-based fan control for passive Tesla GPUs
+- Ollama / LLM benchmark results
+
 This repository contains:
 
 | Folder | What it is |
@@ -33,6 +43,10 @@ This repository contains:
 | Driver | NVIDIA 560.81 (TCC mode), CUDA 12.6 (CUDA 13.x does not support Volta) |
 
 Full component list, slot placement and power budget: [docs/hardware-and-cabling.md](docs/hardware-and-cabling.md).
+
+![Modified Tesla V100 8-pin cable connector, annotated orientation](images/v100-8pin-annotated.png)
+
+*GPU-side 8-pin connector, viewed straight into the mating face in the photographed orientation: upper row = 4 × +12 V (yellow), lower row = 4 × GND (black). This annotation reflects the builder's working cable arrangement for this specific build.*
 
 ## The problem in one picture
 

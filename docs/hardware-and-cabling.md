@@ -107,15 +107,22 @@ Maximum board power is 250 W: 75 W from the slot plus up to 175 W through the 8-
 
 ### In this build
 
-<!-- TODO: fill in -->
+The installed cable was purchased under the listing title **"35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**.
 
-- Power source on the server side (riser / power board connector):
-- Cable or adapter used, part number:
-- **One cable per GPU?**
-- Pinout diagram / photo:
-- Observed: both GPUs ran at their 250 W limit during prompt processing with no power brake or throttling (`nvidia-smi` throttle reasons clean).
+- **Server-side power source:** the x3650 M5 motherboard's GPU auxiliary-power connector (as reported by the builder).
+- **Cable:** a 35 cm, sleeved 8-pin-to-8-pin GPU power adapter sold specifically for the IBM x3650 M5.
+- **Modification:** none. The cable was installed as supplied; no repinning, splicing or connector rewiring was performed.
+- **GPU-side connection:** the 8-pin auxiliary-power socket of a Tesla V100 PCIe 32 GB.
+- **Cable part number:** not confirmed. The marketplace listing title is not a verified IBM/Lenovo FRU identifier.
+- **Quantity/routing:** the exact number of cables and the complete power-distribution routing have not yet been independently documented.
+- **Electrical verification:** a full end-to-end pinout diagram or multimeter pin map has not been published. The photos show connector shapes and wire colors, **not** a verified electrical pin assignment.
+- **Observed operation:** both GPUs ran at their 250 W limit during prompt processing without reported power-brake or throttling events (`nvidia-smi` throttle reasons clean).
 
-<!-- TODO photos: connector on the server side, adapter, connector on the GPU, pinout -->
+The builder supplied four vendor photographs showing the adapter cable and its connectors. These photos are pending addition to the repository.
+
+> **Safety:** Do not assume an arbitrary 8-pin-to-8-pin cable is electrically interchangeable with this adapter. Inspect the exact motherboard and GPU connector pinouts and verify 12 V, grounds, continuity and cable current rating before connecting power. A successful installation does not establish compatibility of lookalike adapters.
+
+<!-- TODO: add vendor cable photos, verify printed part number/FRU if available, document exact installed cable count and measured connector pinout -->
 
 ## BIOS and firmware notes
 

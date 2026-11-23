@@ -116,6 +116,26 @@ At the GPU-side 8-pin connector, as shown in the installed-server photo, **four 
 
 The same adaptation could instead have been made in the extender; the builder chose to modify the Y adapter. This description documents the builder's specific working assembly, not a universal 8-pin GPU cable pinout.
 
+
+### GPU-side 8-pin connector: photographed orientation
+
+Looking **straight into the mating face of the cable plug**, with the connector oriented exactly as in the supplied close-up photo:
+
+```text
+     Upper row (yellow wires)
+       +12V  +12V  +12V  +12V
+       [  ]  [  ]  [  ]  [  ]
+
+       [  ]  [  ]  [  ]  [  ]
+        GND   GND   GND   GND
+      Lower row (black wires)
+```
+
+This is the **builder-reported wiring of the modified cable shown in the photographs**, not a universal PCIe/EPS connector diagram. In the modified single-branch adapter, three incoming yellow +12 V conductors feed four GPU-side +12 V contacts (one incoming conductor is shared between two contacts); the four black ground conductors supply the four GND contacts. The server-side 35 cm extension remains unmodified.
+
+**Wire-color convention:** in common ATX power cables yellow generally denotes +12 V and black denotes ground. This convention **does not independently verify** the electrical polarity or contact mapping of a third-party or rewired adapter. The table above is an orientation-specific account of this installation; a connector viewed from the wire-entry side, or rotated, appears different.
+
+
 > **Safety:** The physical wire arrangement and operational tests do not replace verification of polarity, pin assignments, and cable current capacity. Do not connect a lookalike cable without confirming its actual wiring.
 
 <!-- TODO: add installed-system and modified-adapter photos; document verified contact numbering if needed -->

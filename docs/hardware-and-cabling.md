@@ -99,6 +99,18 @@ Details and the measuring script are in [`../power/`](../power/).
 
 <!-- TODO photos: riser 1 and riser 2 close-ups, airflow path -->
 
+### Tesla V100 card and power socket outside the riser
+
+The builder ordered **both Tesla V100 PCIe 32 GB cards** from eBay seller **startrek9** ([reference listing, item 198524925093](https://www.ebay.com/itm/198524925093)).
+
+In the installed server, the riser obscures the view of the card and its power socket. The seller's listing photos below show these details outside the server.
+
+| Tesla V100 PCIe card — listing reference photo | GPU-mounted 8-pin power socket — listing reference photo |
+|---|---|
+| ![Tesla V100 PCIe card outside the server, seller listing reference photo](images/v100-pcie-card-reference.webp) | ![GPU-mounted 8-pin power socket on the Tesla V100, seller listing reference photo](images/v100-gpu-power-socket-reference.webp) |
+
+The close-up shows the socket on the GPU itself. The mating face of the cable plug is documented in the [connector-orientation section](#gpu-side-8-pin-connector-photographed-orientation).
+
 ## GPU power
 
 The Tesla V100 PCIe has **one 8-pin power connector on the rear edge of the card**. On the Tesla PCIe cards (K80, P40, P100, V100) this connector uses the **8-pin CPU / EPS-12V pinout, not the 8-pin PCIe pinout**. A standard PCIe 8-pin plug can physically go in only with force, and it puts 12 V and ground on the wrong pins.

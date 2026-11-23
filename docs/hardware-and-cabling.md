@@ -105,24 +105,29 @@ The Tesla V100 PCIe has **one 8-pin power connector on the rear edge of the card
 
 Maximum board power is 250 W: 75 W from the slot plus up to 175 W through the 8-pin connector.
 
-### In this build
+### In this build: two distinct cable components
 
-The installed cable was purchased under the listing title **"35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**.
+**1. Server-side cable — unmodified**
 
-- **Server-side power source:** the x3650 M5 motherboard's GPU auxiliary-power connector (as reported by the builder).
-- **Cable:** a 35 cm, sleeved 8-pin-to-8-pin GPU power adapter sold specifically for the IBM x3650 M5.
-- **Modification:** none. The cable was installed as supplied; no repinning, splicing or connector rewiring was performed.
-- **GPU-side connection:** the 8-pin auxiliary-power socket of a Tesla V100 PCIe 32 GB.
-- **Cable part number:** not confirmed. The marketplace listing title is not a verified IBM/Lenovo FRU identifier.
-- **Quantity/routing:** the exact number of cables and the complete power-distribution routing have not yet been independently documented.
-- **Electrical verification:** a full end-to-end pinout diagram or multimeter pin map has not been published. The photos show connector shapes and wire colors, **not** a verified electrical pin assignment.
-- **Observed operation:** both GPUs ran at their 250 W limit during prompt processing without reported power-brake or throttling events (`nvidia-smi` throttle reasons clean).
+- Sold as **"35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**.
+- Connects to the server's **motherboard GPU auxiliary-power socket**, per the builder.
+- Used **as purchased**, with no repinning, cutting or rewiring.
+- The exact manufacturer's part number / IBM FRU has not been verified.
 
-The builder supplied four vendor photographs showing the adapter cable and its connectors. These photos are pending addition to the repository.
+**2. Tesla V100 adapter — modified**
 
-> **Safety:** Do not assume an arbitrary 8-pin-to-8-pin cable is electrically interchangeable with this adapter. Inspect the exact motherboard and GPU connector pinouts and verify 12 V, grounds, continuity and cable current rating before connecting power. A successful installation does not establish compatibility of lookalike adapters.
+- Originally supplied as **"Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100"**, a Y/split cable with two branches.
+- The builder **removed one of the Y branches and rewired the remaining branch** for the installation.
+- This is **not an unmodified off-the-shelf GPU power cable**. Do not reproduce or substitute it based solely on the seller name, plug shape, wire colors or the supplied vendor photos.
+- The precise connector-to-connector continuity map, conductor gauge/current rating and modifications are **not documented or independently verified**. No electrical pinout is implied here.
 
-<!-- TODO: add vendor cable photos, verify printed part number/FRU if available, document exact installed cable count and measured connector pinout -->
+**Observed operation:** the two installed Tesla V100 PCIe 32 GB cards have run under LLM loads with reported peaks in the 250 W class and no reported power-brake/throttling events. This is functional evidence for this particular installed setup, **not** proof that the wiring is universally safe or that other adapters are compatible.
+
+The builder supplied vendor images of both cable products, including close-ups of the V100 Y adapter; these images show their **original marketed configuration**, not a verified photo of the final, modified wiring. Image files are not yet included in the repository.
+
+> **Electrical safety:** An 8-pin connector's plastic keying and wire colors do not establish which contacts carry +12 V or ground. Before powering a different configuration, verify the exact motherboard-side and GPU-side pin assignments, end-to-end continuity, cable current capacity, and polarity using authoritative component documentation and appropriate measurements. Incorrect wiring can destroy the GPU or the server and may create a fire hazard.
+
+<!-- TODO: add separately labeled supplier reference images; obtain photos of final modified cable and a verified end-to-end pin map; confirm quantity/routing per GPU, manufacturer/FRU and wire gauge -->
 
 ## BIOS and firmware notes
 

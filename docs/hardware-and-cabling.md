@@ -105,29 +105,20 @@ The Tesla V100 PCIe has **one 8-pin power connector on the rear edge of the card
 
 Maximum board power is 250 W: 75 W from the slot plus up to 175 W through the 8-pin connector.
 
-### In this build: two distinct cable components
+### In this build
 
-**1. Server-side cable — unmodified**
+Two cable sections connect the motherboard GPU power outlet to each Tesla V100:
 
-- Sold as **"35cm 8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**.
-- Connects to the server's **motherboard GPU auxiliary-power socket**, per the builder.
-- Used **as purchased**, with no repinning, cutting or rewiring.
-- The exact manufacturer's part number / IBM FRU has not been verified.
+1. **Server-side extender:** a 35 cm cable sold as **"8pin to 8pin Power Adapter Cable for IBM X3650 M5 to GPU video card"**. This cable was used without modification.
+2. **GPU adapter:** originally sold as **"Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100"**. The builder removed one of its two branches and rewired the remaining branch, converting the Y-cable into a single-output adapter.
 
-**2. Tesla V100 adapter — modified**
+At the GPU-side 8-pin connector, as shown in the installed-server photo, **four yellow +12 V conductors/contact positions are above four black GND conductors/contact positions** in the photographed orientation. The modified Y adapter distributes **three incoming +12 V wires to four +12 V contacts** (one wire feeds two contacts), while **four GND wires connect to four GND contacts**.
 
-- Originally supplied as **"Dual 8 to 8 Pin GPU Power Cable for NVIDIA Tesla V100"**, a Y/split cable with two branches.
-- The builder **removed one of the Y branches and rewired the remaining branch** for the installation.
-- This is **not an unmodified off-the-shelf GPU power cable**. Do not reproduce or substitute it based solely on the seller name, plug shape, wire colors or the supplied vendor photos.
-- The precise connector-to-connector continuity map, conductor gauge/current rating and modifications are **not documented or independently verified**. No electrical pinout is implied here.
+The same adaptation could instead have been made in the extender; the builder chose to modify the Y adapter. This description documents the builder's specific working assembly, not a universal 8-pin GPU cable pinout.
 
-**Observed operation:** the two installed Tesla V100 PCIe 32 GB cards have run under LLM loads with reported peaks in the 250 W class and no reported power-brake/throttling events. This is functional evidence for this particular installed setup, **not** proof that the wiring is universally safe or that other adapters are compatible.
+> **Safety:** The physical wire arrangement and operational tests do not replace verification of polarity, pin assignments, and cable current capacity. Do not connect a lookalike cable without confirming its actual wiring.
 
-The builder supplied vendor images of both cable products, including close-ups of the V100 Y adapter; these images show their **original marketed configuration**, not a verified photo of the final, modified wiring. Image files are not yet included in the repository.
-
-> **Electrical safety:** An 8-pin connector's plastic keying and wire colors do not establish which contacts carry +12 V or ground. Before powering a different configuration, verify the exact motherboard-side and GPU-side pin assignments, end-to-end continuity, cable current capacity, and polarity using authoritative component documentation and appropriate measurements. Incorrect wiring can destroy the GPU or the server and may create a fire hazard.
-
-<!-- TODO: add separately labeled supplier reference images; obtain photos of final modified cable and a verified end-to-end pin map; confirm quantity/routing per GPU, manufacturer/FRU and wire gauge -->
+<!-- TODO: add installed-system and modified-adapter photos; document verified contact numbering if needed -->
 
 ## BIOS and firmware notes
 

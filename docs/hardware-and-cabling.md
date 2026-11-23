@@ -1,6 +1,6 @@
 # Hardware and GPU power cabling
 
-> **Work in progress.** Photos and the exact cable and adapter details will be added. This page answers the common Reddit questions: can it be done with one cable, which connector, which adapter.
+> **Work in progress.** Additional photos and the remaining cable and adapter details will be added. This page answers the common Reddit questions: can it be done with one cable, which connector, which adapter.
 
 ## Full configuration
 
@@ -95,7 +95,9 @@ Details and the measuring script are in [`../power/`](../power/).
 - The chassis is ducted: the fans on each side mainly cool that side's CPU, DIMMs and riser. This is why the fan control works per zone.
 - GPU0 on the CPU1 side consistently runs a few °C warmer than GPU1.
 
-<!-- TODO photos: server overview, riser 1, riser 2, GPU seated, airflow path -->
+![IBM System x3650 M5 with 2× NVIDIA Tesla V100 PCIe 32 GB](images/server-dual-v100.jpg)
+
+<!-- TODO photos: riser 1 and riser 2 close-ups, airflow path -->
 
 ## GPU power
 
@@ -119,6 +121,10 @@ The same adaptation could instead have been made in the extender; the builder ch
 
 ### GPU-side 8-pin connector: photographed orientation
 
+![Modified Tesla V100 8-pin cable connector, annotated orientation](images/v100-8pin-annotated.png)
+
+*GPU-side 8-pin connector, viewed straight into the mating face in the photographed orientation: upper row = 4 × +12 V (yellow), lower row = 4 × GND (black). This annotation reflects the builder's working cable arrangement for this specific build.*
+
 Looking **straight into the mating face of the cable plug**, with the connector oriented exactly as in the supplied close-up photo:
 
 ```text
@@ -138,7 +144,7 @@ This is the **builder-reported wiring of the modified cable shown in the photogr
 
 > **Safety:** The physical wire arrangement and operational tests do not replace verification of polarity, pin assignments, and cable current capacity. Do not connect a lookalike cable without confirming its actual wiring.
 
-<!-- TODO: add installed-system and modified-adapter photos; document verified contact numbering if needed -->
+<!-- TODO: add a photo of the complete modified adapter; document verified contact numbering if needed -->
 
 ## BIOS and firmware notes
 
